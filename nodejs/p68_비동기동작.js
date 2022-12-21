@@ -13,6 +13,15 @@ const job2=()=>{
 const job3=()=>{
     const b = Math.random()*100
     setTimeout(()=>{
+        
+        
+        
+        
+        
+        
+        
+        
+        
         console.log('난3번',b)
     },b)
 }
