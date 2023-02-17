@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>체티창</title>
+        <style>
+            body{
+                margin:0;
+                padding-bottom: 3rem;             
+            }
+            #form{
+                background: rgba(0,0,0,0.2);
+                padding: 4px;
+                position: fixed;
+                bottom: 0px;
+                left: 0;
+                right: 0;
+                display: flex;
+                height: 45px;
+                box-sizing: border-box;
+                backdrop-filter: blur(10px);
+            }
+            #input{
+                border:none;
+                padding: 0 16px;
+                flex-grow: 1;
+                border-radius: 32px;
+                margin: 4px
+            }
+            #input:focus{
+                outline: none
+            }
+            #form button{
+                background:  #333;
+                border:none;
+                padding: 0.1em;
+                margin : 4px;
+                border-radius: 5px;
+                outline: none;
+                color: #fff
+            }
+            #messages{
+                list-style-type: none;
+                margin:0;
+                padding:0;                
+            }
+            #messages> li{
+                padding: 8px 16px
+            }
+            #messages > li:nth-child(odd){
+                background: #efefef;
+            }
+
+
+        </style>
+</head>
+<body>
+    <ul id="messages">
+        <form action="" id="form">
+            <input id="input" autocomplete="off">
+            <button>전송</button>
+        </form>
+    </ul>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let socket = io()
+
+        let message = document.getElementById("messages")
+        let form = document.getElementById("form")
+        let input = document.getElementById("input")
+
+        /* 전송 */
+        form.addEventListener("submit", function (e){
+            console.log('chat out')
+            e.preventDefault()
+            if (input.value){
+                socket.emit('chat message',input.value)
+                input.value = ''
+            }
+        })
+
+        /* 수신 */
+        socket.on('chat message',function (msg){
+            console.log('chat in')
+            let talk = document.createElement('li')
+            talk.textContent = msg // 메세지를 li 에 표현
+            message.appendChild(talk) // 대화를 한줄식 추가
+            window.scrollTo(0, document.body.scrollHeight) // chat 가 길어졌을때
+        })
+
+
+
+    </script>
+</body>
+</html>

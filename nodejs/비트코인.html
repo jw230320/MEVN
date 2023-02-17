@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script src="비트코인조회용.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded",()=>{
+            const ji =document.getElementById('ji')
+            const bi =document.getElementById('bi')
+            const choi = document.getElementById('choi')
+            const button = document.getElementById('button')
+
+            value().then(bit=>{
+                const hyen_p=bit.trade_price
+                localStorage.setItem('hyen_p1',hyen_p)
+            })
+
+            const hyen_p2=localStorage.getItem('hyen_p1')
+
+           
+            
+        value().then(bit=>{
+            ji.innerHTML=`비트코인 현재가는 ${bit.trade_price} , 갱신날짜는 ${bit.trade_date} 시간은 ${bit.trade_time}입니다`
+             const bi_p=(bit.trade_price-hyen_p2)/hyen_p2
+             if(bi_p<0){
+
+                 bi.innerHTML=`현재가는 ${bit.trade_price} 이전가는 ${hyen_p2} ${bi_p}만큼 하강했습니다`
+                }else{
+                 bi.innerHTML=`현재가는 ${bit.trade_price} 이전가는 ${hyen_p2} ${bi_p}만큼 상승했습니다`
+
+             }
+            button.addEventListener('click',()=>{
+                choi.textContent=`종일 최고가는 ${bit.high_price}, 최저가는 ${bit.low_price}`
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div id="ji"></div>
+    <div id="bi"></div>
+    <button id="button">최고가,최저가버튼</button>
+    <div id="choi"></div>
+</body>
+</html>

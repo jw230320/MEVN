@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_pro02"]=self["webpackChunkvue_pro02"]||[]).push([[443],{8924:function(u,e,n){n.r(e),n.d(e,{default:function(){return p}});var t=n(3396),l=n(7139),r={__name:"AboutView",setup(u){const e="이것은 setup으로 작성한것임";return(u,n)=>((0,t.wg)(),(0,t.iD)("template",null,[(0,t._)("div",null,[(0,t.Uk)((0,l.zw)(u.jjj)+" ",1),(0,t._)("h1",null,(0,l.zw)(e))])]))}};const s=r;var p=s}}]);
+//# sourceMappingURL=about.ecb03783.js.map

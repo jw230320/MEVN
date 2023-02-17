@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Count is <span>0</span>
+    <script>
+      /* 1단계 */
+    
+      const span = document.querySelector('span')
+      function a(){
+
+        
+        let count = 0
+        setInterval(() => {
+          
+          count++
+          span.innerText = count
+        }, 1000)
+  
+      }
+      function resetCount() {
+        count = 0
+        span.innerText = count
+      }
+      
+      </script>
+</body>
+</html>

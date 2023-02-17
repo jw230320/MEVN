@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환율조회</title>
+    <script src="./p083/환율조회용.js" defer></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const einput = document.createElement("input")
+            const espan = document.createElement("span")
+            const ebutton = document.createElement("button")
+            const ep = document.createElement("p")
+            document.body.append(einput,espan,ebutton,ep)
+            ebutton.textContent= "계산"
+            espan.textContent= "달러"
+            let dollar = 1
+            let won
+            value().then(mydata=>{
+                console.log('환율정보읽음')
+                alert(`환율정보가 현재가${mydata}원 으로 갱신되었습니다.`)
+                ep.textContent = `갱신된 환율 정보는 1달러에 ${mydata}원 입니다.`
+                won = mydata
+            })
+
+            ebutton.addEventListener("click",()=>{
+                dollar = + einput.value
+                if(isNaN(dollar)){
+                    ep.textContent= "숫자를 입력하세요."
+                    return // 조기리턴
+                }
+                ep.textContent =  `${dollar} 달러에 ${(dollar*won).toLocaleString('ko-KR')} 원 `          
+                })
+            })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

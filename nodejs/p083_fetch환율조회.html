@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환율조회</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const einput = document.createElement("input")
+            const espan = document.createElement("span")
+            const ebutton = document.createElement("button")
+            const ep = document.createElement("p")
+            document.body.append(einput,espan,ebutton,ep)
+            ebutton.textContent= "계산"
+            espan.textContent= "달러"
+            let dollar = 1
+            ebutton.addEventListener("click",()=>{
+                dollar = + einput.value
+                if(isNaN(dollar)){
+                    ep.textContent= "숫자를 입력하세요."
+                    return // 조기리턴
+                }
+                
+                const url = 'https://quotation-api-cdn.dunamu.com/v1/forex/recent?codes=FRX.KRWUSD'
+                
+                fetch(url)
+                .then((response)=>response.json())
+                .then(data=>{
+                    const toData = (dollar*data[0].basePrice).toLocaleString('ko-KR')
+                    ep.textContent= toData
+                })
+                })
+
+
+
+
+            })
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
